@@ -2,7 +2,7 @@
 
 {% api-method method="get" host="https://YOUT\_SHOP\_URL" path="/rest/v1/articles" %}
 {% api-method-summary %}
-all articles 
+all articles
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -13,7 +13,7 @@ Get all articles.
 {% api-method-request %}
 {% api-method-query-parameters %}
 {% api-method-parameter name="filter" type="string" required=false %}
-filter\[\]=oxactive\|=\|1&filter\[\]=oxtitle\|like\|kite  
+filter\[\]=oxactive\|=\|1&filter\[\]=oxtitle\|like\|kite
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
@@ -81,14 +81,14 @@ one article
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Get one article by Id (field: oxid).
+Get one article by id \(oxarticles.oxid\).
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-path-parameters %}
 {% api-method-parameter name="id" type="string" required=true %}
-oxarticles.oxid
+oxid
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 {% endapi-method-request %}
@@ -134,10 +134,8 @@ Article with {id} not found
 {% endapi-method %}
 
 {% hint style="info" %}
-Use `/rest/v1/object/articles` to get the whole oxid object \(see [Installation](../installation.md#installation-within-oxid)\). 
+Use `/rest/v1/object/articles` to get the whole oxid object \(see [Installation](../installation.md#installation-within-oxid)\).
 {% endhint %}
 
 {% page-ref page="filters.md" %}
-
-
 
