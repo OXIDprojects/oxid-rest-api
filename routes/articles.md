@@ -81,7 +81,7 @@ one article
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Get one article by oxid.
+Get one article by Id (field: oxid).
 {% endapi-method-description %}
 
 {% api-method-spec %}
