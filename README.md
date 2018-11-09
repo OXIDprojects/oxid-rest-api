@@ -41,14 +41,21 @@ to redirect all requests to "/rest/" to the Lumen REST API.
 
 There are _two different type of routes_ - database only routes and "OXID object" routes, which bootstrap the OXID framework.
 
-A plain database route for articles is e.g.:
+Example plain database routes for articles are e.g.:
 
 ```bash
+# get all articles
 http://your-shop.org/rest/v1/articles/
+# get one article object via OXID framework
+http://your-shop.org/rest/v1/articles/05833e961f65616e55a2208c2ed7c6b8
 ```
 
 An example object route is:
 
 ```bash
+# get one article object via OXID framework
 http://your-shop.org/rest/v1/object/articles/05833e961f65616e55a2208c2ed7c6b8
 ```
+
+Get article by column and value from the database:
+`http://your-shop.org/rest/v1/articles/oxartnum/400-01`

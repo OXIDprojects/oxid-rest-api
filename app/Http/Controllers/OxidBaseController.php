@@ -27,9 +27,6 @@ class OxidBaseController extends Controller
             foreach ($vars as $key => $value) {
                 if (($pos = strpos($key, '__')) > 0) {
                     $key = substr($key, $pos + 2);
-                    if ($this->_keyIsBlacklisted($key)) {
-                        continue;
-                    }
                     $value = $value->getRawValue();
                     $a[strtoupper($key)] = $value;
                 }

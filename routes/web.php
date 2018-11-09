@@ -21,6 +21,7 @@ $router->group(
     ['prefix' => 'rest/v1'], function () use ($router) {
         // oxarticles
         $router->get('articles', ['uses' => 'ArticleController@showAllArticles']);
+        $router->get('articles/{column}/{id}', ['uses' => 'ArticleController@showArticlesByColumn']);
         $router->get('articles/{id}', ['uses' => 'ArticleController@showOneArticle']);
         $router->post('articles', ['uses' => 'ArticleController@create']);
         $router->delete('articles/{id}', ['uses' => 'ArticleController@delete']);
