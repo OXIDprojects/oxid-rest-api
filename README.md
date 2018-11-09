@@ -18,7 +18,5 @@ It´s based on the PHP micro framework [Lumen](https://lumen.laravel.com/).
 * Tobias Merkl @tabsl
 * Stefan Moises @upsettweety
 
-{% page-ref page="installation.md" %}
-
 
 
