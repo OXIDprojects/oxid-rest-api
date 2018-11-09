@@ -11,6 +11,19 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get(
+    '/', function () use ($router) {
     return $router->app->version();
-});
+}
+);
+
+$router->group(
+    ['prefix' => 'api'], function () use ($router) {
+    // oxarticles
+    $router->get('articles', ['uses' => 'ArticleController@showAllArticles']);
+    $router->get('articles/{id}', ['uses' => 'ArticleController@showOneArticle']);
+    $router->post('articles', ['uses' => 'ArticleController@create']);
+    $router->delete('articles/{id}', ['uses' => 'ArticleController@delete']);
+    $router->put('articles/{id}', ['uses' => 'ArticleController@update']);
+}
+);
