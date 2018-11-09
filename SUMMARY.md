@@ -1,4 +1,5 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [OXID REST API](README.md)
+* [Changelog](changelog.md)
 
