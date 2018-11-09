@@ -32,6 +32,6 @@ $router->group(
 $router->group(
     ['prefix' => 'rest/v1/object'], function () use ($router) {
         // oxarticles
-    $router->get('articles/{id}', ['uses' => 'OxidArticleController@showOneArticleFull']);
+    $router->get('articles/{id}', ['uses' => 'OxidArticleController@showOneArticle']);
 }
 );

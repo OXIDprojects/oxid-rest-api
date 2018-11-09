@@ -1,4 +1,4 @@
-# oxid-rest-api
+# OXID REST API
 powered by OXID Community Hackathon 2018.
 
 This REST API prototype uses the PHP micro framework [Lumen](https://lumen.laravel.com/).
@@ -52,24 +52,24 @@ If `/object/` is used in url, you will get the whole oxid object.
 
 ```bash
 # get all articles (db only)
-http://your-shop.org/rest/v1/articles/
+https://YOUR_SHOP_ROOT/rest/v1/articles/
 
 # get one article (db only)
-http://your-shop.org/rest/v1/article/05833e961f65616e55a2208c2ed7c6b8
+https://YOUR_SHOP_ROOT/rest/v1/article/05833e961f65616e55a2208c2ed7c6b8
 
 # get all articles (oxarticles object)
-http://your-shop.org/rest/v1/object/articles/
+https://YOUR_SHOP_ROOT/rest/v1/object/articles/
 
 # get one article (oxarticles object)
-http://your-shop.org/rest/v1/object/article/05833e961f65616e55a2208c2ed7c6b8
+https://YOUR_SHOP_ROOT/rest/v1/object/article/05833e961f65616e55a2208c2ed7c6b8
 ```
 ### Filter
 
 Filter example:
 
 ```bash
-# get all articles (db only)
-http://your-shop.org/rest/v1/articles/?filter[oxactive]=eq1&filter[oxtitle]=likite
+# get all articles
+https://YOUR_SHOP_ROOT/rest/v1/articles/?filter[oxactive]=eq1&filter[oxtitle]=likite
 ```
 
 Example: Get all articles whith `oxactive = 1` and `oxtitle LIKE '%kite%'`.
