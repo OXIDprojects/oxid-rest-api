@@ -1,6 +1,6 @@
 # Table of contents
 
-* [OXID REST API](README.md)
+* [Overview](README.md)
 * [Installation](installation.md)
 * [Changelog](changelog.md)
 
