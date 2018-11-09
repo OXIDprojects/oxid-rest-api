@@ -71,7 +71,11 @@ Filter example:
 # get all articles (db only)
 http://your-shop.org/rest/v1/articles/?filter[oxactive]=eq1&filter[oxtitle]=likite
 ```
-Example gets all articles whith `oxactive = 1` and `oxtitle like '%kite%'`.
+
+Example: Get all articles whith `oxactive = 1` and `oxtitle LIKE '%kite%'`.
+
+Filter value consists two parts. The first two characters are the "filter action",
+the following ones the "filter value".
 
 Possible filter actions:
 ```bash
