@@ -20,14 +20,16 @@ class ArticleController extends Controller
     public function showAllArticles()
     {
         if (!empty($filters = FilterHelper::prepareFilters())) {
-            return response()->json(
-                Article::where(
-                    array_values($filters)
-                )->get()
-            );
+            if (($articles = Article::where(array_values($filters))->get()) && count($articles)) {
+                return response()->json($articles);
+            }
+        } else {
+            if ($articles = Article::all()) {
+                return response()->json($articles);
+            }
         }
 
-        return response()->json(Article::all());
+        return response('No articles found', 404);
     }
 
     /**
@@ -37,7 +39,11 @@ class ArticleController extends Controller
      */
     public function showOneArticle($id)
     {
-        return response()->json(Article::find($id));
+        if ($article = Article::find($id)) {
+            return response()->json($article);
+        }
+
+        return response('Article with id ' . $id . ' not found', 404);
     }
 
     /**
