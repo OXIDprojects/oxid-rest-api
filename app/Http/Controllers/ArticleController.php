@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Helpers\FilterHelper;
 use Illuminate\Http\Request;
 
 /**
@@ -18,6 +19,14 @@ class ArticleController extends Controller
      */
     public function showAllArticles()
     {
+        if (!empty($filters = FilterHelper::prepareFilters())) {
+            return response()->json(
+                Article::where(
+                    array_values($filters)
+                )->get()
+            );
+        }
+
         return response()->json(Article::all());
     }
 
@@ -29,17 +38,6 @@ class ArticleController extends Controller
     public function showOneArticle($id)
     {
         return response()->json(Article::find($id));
-    }
-
-    /**
-     * @param $column
-     * @param $id
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function showArticlesByColumn($column, $id)
-    {
-        return response()->json(Article::findByColumn($column, $id));
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Article
@@ -33,19 +32,5 @@ class Article extends Model
      * @var string
      */
     protected $keyType = 'string';
-
-
-    /**
-     * Get value by column
-     *
-     * @param string $oxColumn
-     * @param string $oxValue
-     *
-     * @return Collection
-     */
-    public static function findByColumn(string $oxColumn = 'oxartnum', string $oxValue): Collection
-    {
-        return Article::where($oxColumn, $oxValue)->get();
-    }
 
 }
