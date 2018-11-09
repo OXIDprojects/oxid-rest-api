@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  */
 require_once __DIR__ . '/../../../../bootstrap.php';
 
-class OxidBaseController extends Controller
+class BaseControllerOxid extends Controller
 {
 
     /**
@@ -55,7 +55,7 @@ class OxidBaseController extends Controller
         }
         if (is_array($d)) {
             // for recursive call
-            return array_map(['OxidBaseController', '_objectToArray'], $d);
+            return array_map(['BaseControllerOxid', '_objectToArray'], $d);
         } else {
             // return filtered array
             if (is_array($d)) {

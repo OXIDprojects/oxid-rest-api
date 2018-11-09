@@ -12,13 +12,13 @@
 */
 
 $router->get(
-    '/rest/', function () use ($router) {
+    '/', function () use ($router) {
     return $router->app->version();
 }
 );
 
 $router->group(
-    ['prefix' => 'rest/v1'], function () use ($router) {
+    ['prefix' => 'rest/v1/'], function () use ($router) {
     // oxarticles
     $router->get('articles', ['uses' => 'ArticleController@showAllArticles']);
     $router->get('articles/{id}', ['uses' => 'ArticleController@showOneArticle']);
@@ -30,8 +30,8 @@ $router->group(
 
 // oxid bootstrap routes
 $router->group(
-    ['prefix' => 'rest/v1/object'], function () use ($router) {
-        // oxarticles
-    $router->get('articles/{id}', ['uses' => 'OxidArticleController@showOneArticle']);
+    ['prefix' => 'rest/v1/object/'], function () use ($router) {
+    // oxarticles
+    $router->get('articles/{id}', ['uses' => 'ArticleControllerOxid@showOneArticle']);
 }
 );

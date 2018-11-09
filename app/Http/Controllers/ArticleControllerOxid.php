@@ -7,7 +7,7 @@ use App\Article;
 // OXID classes
 use OxidEsales\Eshop\Application\Model\Article as OxidArticle;
 
-class OxidArticleController extends OxidBaseController
+class ArticleControllerOxid extends BaseControllerOxid
 {
 
     /**
