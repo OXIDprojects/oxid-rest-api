@@ -65,14 +65,12 @@ https://YOUR_SHOP_ROOT/rest/v1/object/article/05833e961f65616e55a2208c2ed7c6b8
 ```
 ### Filter
 
-Filter example:
+Example: Get all articles whith `oxactive = 1` and `oxtitle LIKE '%kite%'`
 
 ```bash
 # get all articles
 https://YOUR_SHOP_ROOT/rest/v1/articles/?filter[oxactive]=eq1&filter[oxtitle]=likite
 ```
-
-Example: Get all articles whith `oxactive = 1` and `oxtitle LIKE '%kite%'`.
 
 Filter value consists two parts. The first two characters are the "filter action",
 the following ones the "filter value".
