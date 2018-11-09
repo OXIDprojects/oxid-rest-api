@@ -15,6 +15,7 @@ class OxidArticleController extends OxidBaseController
      * Load full OXID article
      *
      * @param string $id
+     *
      * @return void
      */
     public function showOneArticleFull($id)
@@ -24,6 +25,7 @@ class OxidArticleController extends OxidBaseController
         $article->disableLazyLoading();
         if ($article->load($id)) {
             $aObject = $this->_oxObject2Array($article);
+
             return response()->json($aObject);
         }
 
@@ -33,28 +35,6 @@ class OxidArticleController extends OxidBaseController
     public function showOneArticle($id)
     {
         return response()->json(Article::find($id));
-    }
-
-    public function create(Request $request)
-    {
-        $Article = Article::create($request->all());
-
-        return response()->json($Article, 201);
-    }
-
-    public function update($id, Request $request)
-    {
-        $Article = Article::findOrFail($id);
-        $Article->update($request->all());
-
-        return response()->json($Article, 200);
-    }
-
-    public function delete($id)
-    {
-        Article::findOrFail($id)->delete();
-
-        return response('Deleted Successfully', 200);
     }
 
 }

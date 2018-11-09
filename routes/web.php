@@ -13,13 +13,12 @@
 
 $router->get(
     '/rest/', function () use ($router) {
-        return $router->app->version();
-    }
+    return $router->app->version();
+}
 );
 
 $router->group(
-<<<<<<< HEAD
-    ['prefix' => 'v1'], function () use ($router) {
+    ['prefix' => 'rest/v1'], function () use ($router) {
     // oxarticles
     $router->get('articles', ['uses' => 'ArticleController@showAllArticles']);
     $router->get('articles/{id}', ['uses' => 'ArticleController@showOneArticle']);
@@ -27,21 +26,12 @@ $router->group(
     $router->delete('articles/{id}', ['uses' => 'ArticleController@delete']);
     $router->put('articles/{id}', ['uses' => 'ArticleController@update']);
 }
-=======
-    ['prefix' => 'rest/v1'], function () use ($router) {
-        // oxarticles
-        $router->get('articles', ['uses' => 'ArticleController@showAllArticles']);
-        $router->get('articles/{column}/{id}', ['uses' => 'ArticleController@showArticlesByColumn']);
-        $router->get('articles/{id}', ['uses' => 'ArticleController@showOneArticle']);
-        $router->post('articles', ['uses' => 'ArticleController@create']);
-        $router->delete('articles/{id}', ['uses' => 'ArticleController@delete']);
-        $router->put('articles/{id}', ['uses' => 'ArticleController@update']);
-    }
 );
+
+// oxid bootstrap routes
 $router->group(
     ['prefix' => 'rest/v1/object'], function () use ($router) {
-        // Oxid Bootstrap routes
-        $router->get('articles/{id}', ['uses' => 'OxidArticleController@showOneArticleFull']);
-    }
->>>>>>> b142aa28edab20b5c65fc0f8b5857c52f0eea08d
+        // oxarticles
+    $router->get('articles/{id}', ['uses' => 'OxidArticleController@showOneArticleFull']);
+}
 );

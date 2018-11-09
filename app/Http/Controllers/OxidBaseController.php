@@ -12,31 +12,38 @@ require_once __DIR__ . '/../../../../bootstrap.php';
 
 class OxidBaseController extends Controller
 {
-/**
+
+    /**
      * Convert an OXID object to an array
      * Hide some specific fields, for now password and passsalt of oxusers
+     *
      * @param object $o Oxid object
+     *
      * @return array
      */
     protected function _oxObject2Array($o)
     {
         $vars = get_object_vars($o);
-        $a = array();
+        $a = [];
         foreach ($vars as $key => $value) {
             $vars = get_object_vars($o);
             foreach ($vars as $key => $value) {
                 if (($pos = strpos($key, '__')) > 0) {
                     $key = substr($key, $pos + 2);
                     $value = $value->getRawValue();
-                    $a[strtoupper($key)] = $value;
+                    $a[ strtoupper($key) ] = $value;
                 }
             }
         }
+
         return $a;
     }
+
     /**
      * Convert stdClass to array
+     *
      * @param object $d Oxid object
+     *
      * @return array
      */
     protected function _objectToArray($d)
@@ -48,7 +55,7 @@ class OxidBaseController extends Controller
         }
         if (is_array($d)) {
             // for recursive call
-            return array_map(array('OxidBaseController','_objectToArray'), $d);
+            return array_map(['OxidBaseController', '_objectToArray'], $d);
         } else {
             // return filtered array
             if (is_array($d)) {
@@ -56,6 +63,7 @@ class OxidBaseController extends Controller
                     $k = strtolower($k);
                 }
             }
+
             return $d;
         }
     }

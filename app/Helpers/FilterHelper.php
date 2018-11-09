@@ -20,6 +20,7 @@ class FilterHelper
         'le' => '<=',
         'gt' => '>',
         'ge' => '>=',
+        'li' => 'LIKE',
     ];
 
     /**
@@ -38,7 +39,7 @@ class FilterHelper
                 $filterValue = substr($value, 2);
                 if (!empty($filterAction) && $filterValue != '') {
                     if (array_key_exists($filterAction, self::FILTER_ACTIONS_ALLOWED)) {
-                        $filter[] = ['key' => $key, 'action' => self::FILTER_ACTIONS_ALLOWED[ $filterAction ], 'value' => $filterValue];
+                        $filter[] = ['key' => $key, 'action' => self::FILTER_ACTIONS_ALLOWED[ $filterAction ], 'value' => ($filterAction == 'li' ? '%' . $filterValue . '%' : $filterValue)];
                     }
                 }
             }

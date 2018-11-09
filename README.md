@@ -1,41 +1,18 @@
 # oxid-rest-api
-powered by OXID Community Hackathon 2018
+powered by OXID Community Hackathon 2018.
 
 This REST API prototype uses the PHP micro framework [Lumen](https://lumen.laravel.com/).
 
-<<<<<<< HEAD
-Get all articles
-
-`http://rest.oxid.localhost:9000/v1/articles`
-
-Get article by oxid
-
-`http://rest.oxid.localhost:9000/v1/articles/05833e961f65616e55a2208c2ed7c6b8`
-
-Get article by column and value
-
-`http://rest.oxid.localhost:9000/v1/articles/oxartnum/400-01`
-=======
 ## Installation
 
-Copy the repository files into your OXID source folder:
-
-- source
-    - rest
-
-You can also clone it from Github with:
+1. Download repo from github:
 
 ```bash
-cd source/
+cd /YOUR_SHOP_ROOT/source/
 git clone git@github.com:OXIDprojects/oxid-rest-api.git rest
 ```
 
-
-Add this to your __"source/.htaccess"__ file, right below
-
-```bash
-    RewriteRule oxseo\.php$ oxseo.php?mod_rewrite_module_is=on [L]
-```
+2. Add code
 
 ```bash
     # LUMEN REST start
@@ -48,28 +25,65 @@ Add this to your __"source/.htaccess"__ file, right below
     # LUMEN REST end
 ```
 
+into `source/.htaccess` file, right below
+
+```bash
+    RewriteRule oxseo\.php$ oxseo.php?mod_rewrite_module_is=on [L]
+```
+
 to redirect all requests to "/rest/" to the Lumen REST API.
+
+3. Run composer install
+
+```bash
+cd /YOUR_SHOP_ROOT/source/rest/
+composer install
+```
 
 ## Usage
 
-There are _two different type of routes_ - database only routes and "OXID object" routes, which bootstrap the OXID framework.
+There are _two different type of routes_ - database only routes and "OXID object" routes, which bootstraps the OXID framework.
 
-Example plain database routes for articles are e.g.:
+If `/object/` is used in url, you will get the whole oxid object.
+
+### Routes
+
+**Articles**
 
 ```bash
-# get all articles
+# get all articles (db only)
 http://your-shop.org/rest/v1/articles/
-# get one article object via OXID framework
-http://your-shop.org/rest/v1/articles/05833e961f65616e55a2208c2ed7c6b8
-```
 
-An example object route is:
+# get one article (db only)
+http://your-shop.org/rest/v1/article/05833e961f65616e55a2208c2ed7c6b8
+
+# get all articles (oxarticles object)
+http://your-shop.org/rest/v1/object/articles/
+
+# get one article (oxarticles object)
+http://your-shop.org/rest/v1/object/article/05833e961f65616e55a2208c2ed7c6b8
+```
+### Filter
+
+Filter example:
 
 ```bash
-# get one article object via OXID framework
-http://your-shop.org/rest/v1/object/articles/05833e961f65616e55a2208c2ed7c6b8
+# get all articles (db only)
+http://your-shop.org/rest/v1/articles/?filter[oxactive]=eq1&filter[oxtitle]=likite
+```
+Example gets all articles whith `oxactive = 1` and `oxtitle like '%kite%'`.
+
+Possible filter actions:
+```bash
+'ne' => '!=',
+'eq' => '=',
+'lt' => '<',
+'le' => '<=',
+'gt' => '>',
+'ge' => '>=',
+'li' => 'LIKE',
 ```
 
-Get article by column and value from the database:
-`http://your-shop.org/rest/v1/articles/oxartnum/400-01`
->>>>>>> b142aa28edab20b5c65fc0f8b5857c52f0eea08d
+## Good to know
+
+- If you don´t need oxid objects, you haven´t to install this api within your shop folder.
