@@ -11,16 +11,21 @@ class FilterHelper
 {
 
     /**
+     * Filter delimiter
+     */
+    const FILTER_DELIMITER = '|';
+
+    /**
      * Allowed filter actions
      */
     const FILTER_ACTIONS_ALLOWED = [
-        'ne' => '!=',
-        'eq' => '=',
-        'lt' => '<',
-        'le' => '<=',
-        'gt' => '>',
-        'ge' => '>=',
-        'li' => 'LIKE',
+        '=',
+        '!=',
+        '<',
+        '<=',
+        '>',
+        '>=',
+        'like'
     ];
 
     /**
@@ -33,13 +38,14 @@ class FilterHelper
         $filter = [];
         $request = app('Illuminate\Http\Request');
         if ($data = $request->input('filter')) {
-            foreach ($data as $key => $value) {
-                $value = trim($value);
-                $filterAction = substr($value, 0, 2);
-                $filterValue = substr($value, 2);
-                if (!empty($filterAction) && $filterValue != '') {
-                    if (array_key_exists($filterAction, self::FILTER_ACTIONS_ALLOWED)) {
-                        $filter[] = ['key' => $key, 'action' => self::FILTER_ACTIONS_ALLOWED[ $filterAction ], 'value' => ($filterAction == 'li' ? '%' . $filterValue . '%' : $filterValue)];
+            foreach ($data as $value) {
+                $filterData = explode(self::FILTER_DELIMITER, $value);
+                $filterKey = trim($filterData[0]);
+                $filterAction = trim($filterData[1]);
+                $filterValue = trim($filterData[2]);
+                if (!empty($filterAction) && $filterValue !== '') {
+                    if (\in_array($filterAction, self::FILTER_ACTIONS_ALLOWED)) {
+                        $filter[] = ['key' => $filterKey, 'action' => $filterAction, 'value' => ($filterAction === 'like' ? '%' . $filterValue . '%' : $filterValue)];
                     }
                 }
             }

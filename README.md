@@ -25,7 +25,7 @@ git clone git@github.com:OXIDprojects/oxid-rest-api.git rest
     # LUMEN REST end
 ```
 
-into `source/.htaccess` file, right below
+to `source/.htaccess` file, right below
 
 ```bash
     RewriteRule oxseo\.php$ oxseo.php?mod_rewrite_module_is=on [L]
@@ -69,23 +69,26 @@ Example: Get all articles whith `oxactive = 1` and `oxtitle LIKE '%kite%'`
 
 ```bash
 # get all articles
-https://YOUR_SHOP_ROOT/rest/v1/articles/?filter[oxactive]=eq1&filter[oxtitle]=likite
+https://v/rest/v1/articles?filter[]=oxshopid|=|1&filter[]=oxtitle|like|kite
 ```
 
-Filter value consists two parts. The first two characters are the "filter action",
-the following ones the "filter value".
+Every filter consists three parts:
 
-Possible filter actions:
+1. key (eg. oxarticles.oxshopid)
+2. action
+4. value
+
+Allowed filter actions:
 ```bash
-'ne' => '!=',
-'eq' => '=',
-'lt' => '<',
-'le' => '<=',
-'gt' => '>',
-'ge' => '>=',
-'li' => 'LIKE',
+'=',
+'!=',
+'<',
+'<=',
+'>',
+'>=',
+'like'
 ```
 
-## Good to know
+## Using API without oxid objects
 
-- If you don´t need oxid objects, you haven´t to install this api within your shop folder.
+If you don´t need oxid objects, you haven´t to install this api within your shop folder / edit .htaccess file. But in this case you have to set up your database credentials in `.env` file.
