@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Models\Article;
 use App\Helpers\FilterHelper;
 use Illuminate\Http\Request;
@@ -81,6 +82,7 @@ class ArticleController extends Controller
         $Article->setSkipGuarded(false);
         // reload article
         $Article = Article::findOrFail($id);
+
         return response()->json($Article, 201);
     }
 
