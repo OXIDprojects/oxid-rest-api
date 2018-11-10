@@ -75,6 +75,9 @@ class ArticleController extends Controller
             $Article->OXID = $id;
         }
         // we need to force setting the id ...
+        // TODO: maybe remove OXID from $guarded and
+        // just let it overwrite? Or find a better solution
+        // for create vs. update and OXID field ... :)
         $Article->setSkipGuarded(true);
         $Article->fill($request->json()->all());
         $Article->save();
