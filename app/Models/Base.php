@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Base
- * 
+ *
  * The common OXID base model to set primary key,
  * timestamp fields, guarded field etc.
  *
@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Base extends Model
 {
+
     /**
      * Table primary key
      *

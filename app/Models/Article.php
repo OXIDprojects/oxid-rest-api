@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class Article
  *
@@ -11,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Article extends Base
 {
+
     /**
      * Database table
      *

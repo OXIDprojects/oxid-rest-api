@@ -15,10 +15,13 @@ class ArticleController extends Controller
 {
 
     /**
+     * Get all articles
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function showAllArticles()
     {
+        // TODO: paging, limit, sorting
         if (!empty($filters = FilterHelper::prepareFilters())) {
             if (($articles = Article::where(array_values($filters))->get()) && count($articles)) {
                 return response()->json($articles);
@@ -33,6 +36,8 @@ class ArticleController extends Controller
     }
 
     /**
+     * Get only one article
+     *
      * @param $id
      *
      * @return \Illuminate\Http\JsonResponse
@@ -47,6 +52,8 @@ class ArticleController extends Controller
     }
 
     /**
+     * Create an article
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -75,6 +82,8 @@ class ArticleController extends Controller
     }
 
     /**
+     * Update an article
+     *
      * @param         $id
      * @param Request $request
      *
@@ -89,15 +98,21 @@ class ArticleController extends Controller
     }
 
     /**
+     * Delete an article
+     *
      * @param $id
      *
      * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
      */
     public function delete($id)
     {
-        Article::findOrFail($id)->delete();
+        if ($article = Article::find($id)) {
+            if ($article->delete()) {
+                return response('Article with id ' . $id . ' deleted successfully', 200);
+            }
+        }
 
-        return response('Deleted Successfully', 200);
+        return response('Article with id ' . $id . ' not found', 404);
     }
 
 }

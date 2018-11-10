@@ -35,5 +35,8 @@ $router->group(
     // oxarticles
     $router->get('articles', ['uses' => 'ArticleControllerOxid@showAllArticles']);
     $router->get('articles/{id}', ['uses' => 'ArticleControllerOxid@showOneArticle']);
+    $router->post('articles', ['uses' => 'ArticleControllerOxid@create']);
+    $router->delete('articles/{id}', ['uses' => 'ArticleControllerOxid@delete']);
+    $router->put('articles/{id}', ['uses' => 'ArticleControllerOxid@update']);
 }
 );
