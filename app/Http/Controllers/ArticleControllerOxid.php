@@ -24,8 +24,10 @@ class ArticleControllerOxid extends BaseControllerOxid
         // disable lazy loading to get all fields immediately
         $article->disableLazyLoading();
         if ($article->load($id)) {
+            // special case longdesc
+            $longDesc = $article->getLongDesc();
             $articleObject = $this->_oxObject2Array($article);
-
+            $articleObject['OXLONGDESC'] = $longDesc;
             return response()->json($articleObject);
         }
 
