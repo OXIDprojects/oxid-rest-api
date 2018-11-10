@@ -300,5 +300,5 @@ Returns the changed article data
 Use `/rest/v1/object/articles` to update the whole oxid object \(see [Installation](../installation.md#installation-within-oxid)\).
 {% endhint %}
 
-{% page-ref page="filters.md" %}
+{% page-ref page="../api/filters.md" %}
 
