@@ -45,9 +45,9 @@ class ArticleControllerOxid extends BaseControllerOxid
         if (count($articleListOxid)) {
             $articleList = [];
             foreach ($articleListOxid->getArray() as $oxid => $oxObject) {
-                $articleList[$oxid] = $this->_oxObject2Array($oxObject);
+                $articleList[] = $this->_oxObject2Array($oxObject);
             }
-            
+
             return response()->json($articleList);
         }
 
