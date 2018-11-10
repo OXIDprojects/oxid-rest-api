@@ -32,15 +32,23 @@ class ArticleControllerOxid extends BaseControllerOxid
         return response('Article with id ' . $id . ' not found', 404);
     }
 
+    /**
+     * Load ArticleList via OXID framework
+     *
+     * @return void
+     */
     public function showAllArticles()
     {
-        $articleList = oxNew(OxidArticleList::class);
-        $articleList->selectString('SELECT * FROM oxarticles');
-        if (count($articleList)) {
-            // TODO @smxsm: object2array
-            $articleListObject = $this->_oxObject2Array($articleList);
-
-            return response()->json($articleListObject);
+        $articleListOxid = oxNew(OxidArticleList::class);
+        // TODO: paging, limit, sorting
+        $articleListOxid->selectString('SELECT * FROM oxarticles');
+        if (count($articleListOxid)) {
+            $articleList = [];
+            foreach ($articleListOxid->getArray() as $oxid => $oxObject) {
+                $articleList[$oxid] = $this->_oxObject2Array($oxObject);
+            }
+            
+            return response()->json($articleList);
         }
 
         return response('No articles found', 404);
