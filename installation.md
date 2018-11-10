@@ -36,7 +36,7 @@ composer install
 
 ## Installation outside OXID
 
-If you don´t need oxid objects it´s not necessary to install the api within the oxid source directory. In this case you also don´t need do add the rewrite rules in your shop `.htaccess` file. 
+If you don´t need oxid objects it´s not necessary to install the api outside the oxid source directory. In this case you also don´t need do add the rewrite rules in your shop `.htaccess` file. 
 
 ## Routes
 
