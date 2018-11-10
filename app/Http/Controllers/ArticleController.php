@@ -24,6 +24,7 @@ class ArticleController extends Controller
     {
         // TODO: paging, limit, sorting
         // maybe use chunks, see https://stackoverflow.com/questions/39029449/limiting-eloquent-chunks#39033142
+        // and https://laravel.com/docs/5.7/eloquent#chunking-results
         // or custom paginators, see https://gist.github.com/simonhamp/549e8821946e2c40a617c85d2cf5af5e
         if (!empty($filters = FilterHelper::prepareFilters())) {
             if (($articles = Article::where(array_values($filters))->get()) && count($articles)) {
@@ -75,6 +76,9 @@ class ArticleController extends Controller
             $Article->OXID = $id;
         }
         // we need to force setting the id ...
+        // TODO: maybe remove OXID from $guarded and
+        // just let it overwrite? Or find a better solution
+        // for create vs. update and OXID field ... :)
         $Article->setSkipGuarded(true);
         $Article->fill($request->json()->all());
         $Article->save();
