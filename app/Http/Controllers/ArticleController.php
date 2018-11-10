@@ -23,6 +23,7 @@ class ArticleController extends Controller
     {
         // TODO: paging, limit, sorting
         // maybe use chunks, see https://stackoverflow.com/questions/39029449/limiting-eloquent-chunks#39033142
+        // and https://laravel.com/docs/5.7/eloquent#chunking-results
         // or custom paginators, see https://gist.github.com/simonhamp/549e8821946e2c40a617c85d2cf5af5e
         if (!empty($filters = FilterHelper::prepareFilters())) {
             if (($articles = Article::where(array_values($filters))->get()) && count($articles)) {
