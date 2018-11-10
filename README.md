@@ -14,9 +14,9 @@ It´s based on the PHP micro framework [Lumen](https://lumen.laravel.com/).
 * Tobias Merkl [@tabsl](https://twitter.com/tabsl)
 * Stefan Moises [@upsettweety](https://twitter.com/upsettweety)
 
-## License
+
+
+{% page-ref page="changelog.md" %}
 
 {% page-ref page="license.md" %}
-
-
 
