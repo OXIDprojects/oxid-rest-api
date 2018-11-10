@@ -19,7 +19,7 @@ $router->get(
 
 // db only routes
 $router->group(
-    ['prefix' => 'rest/v1/'], function () use ($router) {
+    ['prefix' => 'rest/v1/', 'middleware' => 'auth'], function () use ($router) {
     // oxarticles
     $router->get('articles', ['uses' => 'ArticleController@showAllArticles']);
     $router->get('articles/{id}', ['uses' => 'ArticleController@showOneArticle']);
@@ -31,7 +31,7 @@ $router->group(
 
 // oxid object routes
 $router->group(
-    ['prefix' => 'rest/v1/object/'], function () use ($router) {
+    ['prefix' => 'rest/v1/object/', 'middleware' => 'auth'], function () use ($router) {
     // oxarticles
     $router->get('articles', ['uses' => 'ArticleControllerOxid@showAllArticles']);
     $router->get('articles/{id}', ['uses' => 'ArticleControllerOxid@showOneArticle']);
