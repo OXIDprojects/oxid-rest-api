@@ -1,7 +1,7 @@
 # Overview
 
 {% hint style="info" %}
-**Documentation:** [https://oxid-projects.gitbook.io/oxid-rest-api/](https://oxid-projects.gitbook.io/oxid-rest-api/)
+**Documentation:** [https://docs.oxid-projects.com/oxid-rest-api/](https://docs.oxid-projects.com/oxid-rest-api/)
 {% endhint %}
 
 ## About
