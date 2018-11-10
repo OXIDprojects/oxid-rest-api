@@ -47,4 +47,22 @@ class Base extends Model
     protected $guarded = [
         'OXID'
     ];
+    protected $defaultGuarded = [];
+
+    /**
+     * Disable guarded array if creating new objects
+     *
+     * @param boolean $skip
+     * @return void
+     */
+    public function setSkipGuarded($skip = true)
+    {
+        if ($skip && count($this->guarded)) {
+            $this->defaultGuarded = $this->guarded;
+            $this->guarded = [];    
+        } else {
+            $this->guarded = $this->defaultGuarded;
+        }
+    }
+
 }

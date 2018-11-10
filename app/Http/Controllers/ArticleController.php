@@ -53,8 +53,24 @@ class ArticleController extends Controller
      */
     public function create(Request $request)
     {
-        $Article = Article::create($request->all());
-
+        // this fails since OXID is blacklisted in model ...
+        //$Article = Article::create($request->json()->all());
+        // so we need a workaround
+        $Article = new Article;
+        $id = $request->json()->get('OXID');
+        // if no OXID provided, generate a new one
+        if (!$id) {
+            $id = $this->generateUId();
+            $Article->OXID = $id;
+        }
+        // we need to force setting the id ...
+        $Article->setSkipGuarded(true);
+        $Article->fill($request->json()->all());
+        $Article->save();
+        // activate blacklist again ...
+        $Article->setSkipGuarded(false);
+        // reload article
+        $Article = Article::findOrFail($id);
         return response()->json($Article, 201);
     }
 
