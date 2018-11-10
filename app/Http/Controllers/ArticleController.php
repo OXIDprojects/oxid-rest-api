@@ -22,11 +22,14 @@ class ArticleController extends Controller
     public function showAllArticles()
     {
         // TODO: paging, limit, sorting
+        // maybe use chunks, see https://stackoverflow.com/questions/39029449/limiting-eloquent-chunks#39033142
+        // or custom paginators, see https://gist.github.com/simonhamp/549e8821946e2c40a617c85d2cf5af5e
         if (!empty($filters = FilterHelper::prepareFilters())) {
             if (($articles = Article::where(array_values($filters))->get()) && count($articles)) {
                 return response()->json($articles);
             }
         } else {
+            //if ($articles = collect(Article::all())->paginate(5)) {
             if ($articles = Article::all()) {
                 return response()->json($articles);
             }

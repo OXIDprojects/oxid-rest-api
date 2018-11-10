@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Helpers\FilterHelper;
+use Illuminate\Http\Request;
 
 // OXID classes
 use OxidEsales\Eshop\Application\Model\Article as OxidArticle;
 use OxidEsales\Eshop\Application\Model\ArticleList as OxidArticleList;
+use OxidEsales\Eshop\Core\UtilsObject as OxidUtils;
 
 /**
  * Class ArticleControllerOxid
@@ -25,6 +28,8 @@ class ArticleControllerOxid extends BaseControllerOxid
     {
         $articleListOxid = oxNew(OxidArticleList::class);
         // TODO: paging, limit, sorting
+        // maybe use chunks, see https://stackoverflow.com/questions/39029449/limiting-eloquent-chunks#39033142
+        // or custom paginators, see https://gist.github.com/simonhamp/549e8821946e2c40a617c85d2cf5af5e
         $articleListOxid->selectString('SELECT * FROM oxarticles');
         if (count($articleListOxid)) {
             $articleList = [];
@@ -82,4 +87,48 @@ class ArticleControllerOxid extends BaseControllerOxid
         return response('Article with id ' . $id . ' not found', 404);
     }
 
+    /**
+     * Update an article
+     *
+     * @param         $id
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update($id, Request $request)
+    {
+        $article = oxNew(OxidArticle::class);
+        if ($article->load($id)) {
+            $data = $request->json()->all();
+            $article->assign($data);
+            if ($article->save()) {
+                return $this->showOneArticle($id);
+            } else {
+                return response('Problem updating article with id: ' . $id, 500);
+            }
+        }
+
+        return response('Article with id ' . $id . ' not found', 404);
+    }
+
+    /**
+     * Create an article
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(Request $request)
+    {
+        $id = OxidUtils::generateUId();
+        $article = oxNew(OxidArticle::class);
+        $article->setId($id);
+        $data = $request->json()->all();
+        $article->assign($data);
+        if ($article->save()) {
+            return $this->showOneArticle($id);
+        } else {
+            return response('Problem creating article with id: ' . $id, 500);
+        }
+    }
 }
