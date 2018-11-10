@@ -3,6 +3,7 @@
 * [Overview](README.md)
 * [Installation](installation.md)
 * [Changelog](changelog.md)
+* [License](license.md)
 
 ## Routes
 
