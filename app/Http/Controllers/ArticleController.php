@@ -6,6 +6,7 @@ use App\User;
 use App\Models\Article;
 use App\Helpers\FilterHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Class ArticleController
@@ -22,17 +23,18 @@ class ArticleController extends Controller
      */
     public function showAllArticles()
     {
-        // TODO: paging, limit, sorting
-        // maybe use chunks, see https://stackoverflow.com/questions/39029449/limiting-eloquent-chunks#39033142
-        // and https://laravel.com/docs/5.7/eloquent#chunking-results
-        // or custom paginators, see https://gist.github.com/simonhamp/549e8821946e2c40a617c85d2cf5af5e
+        $limit = (Input::get('limit') ? Input::get('limit') : '10');
+        $page = (Input::get('page') ? Input::get('page') : '1');
+        $skip = ($page > 1 ? ($page - 1) * $limit : 0);
+        $order_by = (Input::get('order_by') ? Input::get('order_by') : 'oxartnum');
+        $order = (Input::get('order') ? Input::get('order') : 'asc');
+
         if (!empty($filters = FilterHelper::prepareFilters())) {
-            if (($articles = Article::where(array_values($filters))->get()) && count($articles)) {
+            if (($articles = Article::where(array_values($filters))->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) && count($articles)) {
                 return response()->json($articles);
             }
         } else {
-            //if ($articles = collect(Article::all())->paginate(5)) {
-            if ($articles = Article::all()) {
+            if ($articles = Article::whereNotNull('oxid')->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) {
                 return response()->json($articles);
             }
         }

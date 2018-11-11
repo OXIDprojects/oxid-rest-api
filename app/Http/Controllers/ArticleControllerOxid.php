@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Helpers\FilterHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 // OXID classes
 use OxidEsales\Eshop\Application\Model\Article as OxidArticle;
@@ -26,12 +27,23 @@ class ArticleControllerOxid extends BaseControllerOxid
      */
     public function showAllArticles()
     {
+        $limit = (Input::get('limit') ? Input::get('limit') : '10');
+        $page = (Input::get('page') ? Input::get('page') : '1');
+        $skip = ($page > 1 ? ($page - 1) * $limit : 0);
+        $order_by = (Input::get('order_by') ? Input::get('order_by') : 'oxartnum');
+        $order = (Input::get('order') ? Input::get('order') : 'asc');
+
         $articleListOxid = oxNew(OxidArticleList::class);
-        // TODO: paging, limit, sorting
-        // maybe use chunks, see https://stackoverflow.com/questions/39029449/limiting-eloquent-chunks#39033142
-        // and https://laravel.com/docs/5.7/eloquent#chunking-results
-        // or custom paginators, see https://gist.github.com/simonhamp/549e8821946e2c40a617c85d2cf5af5e
-        $articleListOxid->selectString('SELECT * FROM oxarticles');
+        $oDb = \OxidEsales\Eshop\Core\DatabaseProvider::getDb();
+        // build SQL filter string
+        $filter = '';
+        if (!empty($filters = FilterHelper::prepareFilters())) {
+            foreach ($filters as $f) {
+                $filter .= ' AND ' . $f['key'] . ' ' . $f['action'] . ' ' . $oDb->quote($f['value']);
+            }
+        }
+
+        $articleListOxid->selectString("SELECT * FROM oxarticles WHERE 1 $filter ORDER BY $order_by $order LIMIT $skip, $limit");
         if (count($articleListOxid)) {
             $articleList = [];
             foreach ($articleListOxid->getArray() as $oxid => $oxObject) {
