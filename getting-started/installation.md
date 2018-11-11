@@ -40,7 +40,7 @@ If you don´t need oxid objects it´s not necessary to install the api outside t
 
 ## Routes
 
-{% page-ref page="routes/articles.md" %}
+{% page-ref page="../routes-1/articles.md" %}
 
 
 
