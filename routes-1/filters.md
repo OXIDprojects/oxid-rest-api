@@ -1,3 +1,7 @@
+---
+description: API filters
+---
+
 # Filters
 
 It´s possible to filter `article` requests.

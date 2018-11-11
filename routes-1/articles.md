@@ -1,5 +1,5 @@
 ---
-description: 'Get, create, update and delete articles.'
+description: 'Get, create, update and delete articles'
 ---
 
 # Articles
