@@ -17,3 +17,7 @@ Feel free to contribute this oxid community project.
 * [ ] Add users route \(oxuser/oxaddress\)
 * [ ] Add groups route \(oxgroups\)
 
+{% hint style="info" %}
+Also have a look to the github issues: [https://github.com/OXIDprojects/oxid-rest-api/issues](https://github.com/OXIDprojects/oxid-rest-api/issues)
+{% endhint %}
+
