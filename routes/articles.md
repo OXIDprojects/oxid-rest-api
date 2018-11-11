@@ -19,6 +19,22 @@ Get all articles.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-query-parameters %}
+{% api-method-parameter name="limit" type="number" required=false %}
+number of results to return
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="order" type="string" required=false %}
+order direction, asc or desc
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="order\_by" type="string" required=false %}
+field to order by, e.g. oxartnum
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="page" type="number" required=false %}
+page number
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="filter" type="string" required=false %}
 filter\[\]=oxactive\|=\|1&filter\[\]=oxtitle\|like\|kite
 {% endapi-method-parameter %}
