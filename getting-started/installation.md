@@ -1,24 +1,30 @@
 ---
-description: Installation within/without oxid
+description: Installation OXID REST API
 ---
 
 # Installation
 
-{% hint style="info" %}
- There are two different type of routes - _database only routes_ and _oxid object routes_, which bootstraps the oxid framework \("Installation within OXID"\).
-{% endhint %}
+## Installation methods
 
-## Installation within OXID
+It´s possible to use this api only with the oxid database \(without the framework and therefore without the oxid objects and oxid hooks. Also it´s possible to use this with bootstraped oxid framework \(slow!\).
 
-1.Download git repository
+### Installation within OXID \(and using oxid objects\)
+
+1. Create `rest` directory in oxid source \(eg. /var/www/html/source\) folder 
 
 ```
-cd /YOUR_SHOP_ROOT/source/
-git clone git@github.com:OXIDprojects/oxid-rest-api.git rest
+mkdir rest
+cd rest
 ```
 
-2. Add rewrite rules to `.htaccess` file  
-after line `RewriteRule oxseo.php$ oxseo.php?mod_rewrite_module_is=on [L]`
+2. Install api project
+
+```text
+composer create-project oxid-community/oxid-rest-api
+```
+
+3. Add rewrite rules to `.htaccess` file after line  
+_RewriteRule oxseo.php$ oxseo.php?mod\_rewrite\_module\_is=on \[L\]_
 
 ```
 # LUMEN REST start
@@ -31,20 +37,26 @@ RewriteRule .* rest/public/index.php [L,QSA]
 # LUMEN REST end
 ```
 
-3. Install composer
+4. Create `rest_users` table and test user
 
 ```text
-cd /YOUR_SHOP_ROOT/source/rest/
-composer install
+CREATE TABLE `rest_users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `api-token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `api-rights` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'rw',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `rest_users` (`id`, `name`, `api-token`, `api-rights`, `created_at`, `updated_at`)
+VALUES
+	(1,'Test User','t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs','rw',NULL,NULL);
 ```
 
-## Installation outside OXID
-
-If you don´t need oxid objects it´s not necessary to install the api outside the oxid source directory. In this case you also don´t need do add the rewrite rules in your shop `.htaccess` file. 
-
-## Routes
-
-{% page-ref page="../routes-1/articles.md" %}
-
-
+{% hint style="success" %}
+Finished [http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs](http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs)
+{% endhint %}
 
