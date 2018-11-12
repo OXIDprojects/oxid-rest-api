@@ -2,19 +2,12 @@
 
 ## 1.2.0 - 2018-11-12
 
-### Fixed
-
-* GET authentication
-
-### Added
-
-* Docker environment
+* **added** docker environment
+* **fixed** GET authentication
 
 ## 1.1.0 - 2018-11-11
 
-### Added
-
-* Paging and sorting articles
+* **added** gaging and sorting for articles
 
 ## 1.0.0 - 2018-11-10
 
