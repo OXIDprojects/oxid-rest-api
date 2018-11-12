@@ -15,9 +15,9 @@ class ArticlesTableSeeder extends Seeder
     {
         DB::table('oxarticles')->insert(
             [
-                'oxid'      => 'sGM9m7VDcasdsd00Bod3X2WnxZNn',
-                'oxartnum'	=> 'test123';
-                'oxtitle'	=> 'Testarticle'
+                'OXID'      => 'sGM9m7VDcasdsd00Bod3X2WnxZNn',
+                'OXARTNUM'	=> 'test123',
+                'OXTITLE'	=> 'Testarticle'
             ]
         );
     }
