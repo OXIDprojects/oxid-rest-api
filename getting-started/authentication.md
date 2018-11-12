@@ -1,7 +1,3 @@
----
-description: API authentication
----
-
 # Authentication
 
 Using the API needs and authentication with an API token.
@@ -41,5 +37,7 @@ It´s possible to set **read/write** \(default\) and only **read** permissions.
 | rw | GET, PUT, POST, DELETE |
 | w | GET |
 
-
+{% hint style="danger" %}
+Before production remove test user from `rest_users` table.
+{% endhint %}
 

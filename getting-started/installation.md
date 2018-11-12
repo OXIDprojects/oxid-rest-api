@@ -1,7 +1,3 @@
----
-description: Installation OXID REST API
----
-
 # Installation
 
 ## Installation methods

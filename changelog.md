@@ -23,3 +23,4 @@
 ## 0.0.1 - 2018-11-09
 
 * Starting development on OXID hackathon nuremberg
+

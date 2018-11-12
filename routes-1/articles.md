@@ -1,7 +1,3 @@
----
-description: 'Get, create, update and delete articles'
----
-
 # Articles
 
 

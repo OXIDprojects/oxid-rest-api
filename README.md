@@ -1,7 +1,3 @@
----
-description: 'REST API for OXID eSales ecommerce system, based on Lumen framework.'
----
-
 # Overview
 
 {% hint style="info" %}

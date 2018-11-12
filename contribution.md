@@ -1,7 +1,3 @@
----
-description: Contribute to this project
----
-
 # Contribute
 
 ## It´s open source!
