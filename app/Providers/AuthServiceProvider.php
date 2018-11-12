@@ -9,7 +9,8 @@ use Illuminate\Support\ServiceProvider;
 class AuthServiceProvider extends ServiceProvider
 {
 
-    const APP_AUTH_KEY = 'Api-Token';
+    const APP_AUTH_KEY_HEADER = 'Api-Token';
+    const APP_AUTH_KEY_GET = 'apiToken';
 
     /**
      * Register any application services.
@@ -36,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->app['auth']->viaRequest(
             'api', function ($request) {
 
-            $apiToken = $request->header(self::APP_AUTH_KEY) . $request->get(self::APP_AUTH_KEY);
+            $apiToken = $request->header(self::APP_AUTH_KEY_HEADER) . $request->get(self::APP_AUTH_KEY_GET);
             if (!empty($apiToken)) {
                 return User::where('api-token', $apiToken)->first();
             }
