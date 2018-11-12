@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 - 2018-11-12
+
+### Fixed
+
+* GET authentication
+
+### Added
+
+* Docker environment
+
 ## 1.1.0 - 2018-11-11
 
 ### Added
@@ -13,6 +23,3 @@
 ## 0.0.1 - 2018-11-09
 
 * Starting development on OXID hackathon nuremberg
-
-
-
