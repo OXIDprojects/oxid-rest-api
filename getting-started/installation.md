@@ -4,22 +4,15 @@
 
 It´s possible to use this api only with the oxid database \(without the framework and therefore without the oxid objects and oxid hooks. Also it´s possible to use this with bootstraped oxid framework \(slow!\).
 
-### Installation within OXID \(and using oxid objects\)
+### Installation inside OXID \(using oxid objects\)
 
-1. Create `rest` directory in oxid source \(eg. /var/www/html/source\) folder 
-
-```
-mkdir rest
-cd rest
-```
-
-2. Install api project
+1. Switch to your oxid `source` directory and install project
 
 ```text
-composer create-project oxid-community/oxid-rest-api
+composer create-project oxid-community/oxid-rest-api rest
 ```
 
-3. Add rewrite rules to `.htaccess` file after line  
+2. Add rewrite rules to `.htaccess` file after line  
 _RewriteRule oxseo.php$ oxseo.php?mod\_rewrite\_module\_is=on \[L\]_
 
 ```
@@ -33,7 +26,7 @@ RewriteRule .* rest/public/index.php [L,QSA]
 # LUMEN REST end
 ```
 
-4. Create `rest_users` table and test user
+3. Create `rest_users` table and test user
 
 ```text
 CREATE TABLE `rest_users` (
@@ -52,7 +45,34 @@ VALUES
 	(1,'Test User','t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs','rw',NULL,NULL);
 ```
 
+4. Update database credentials in `.env` file
+
 {% hint style="success" %}
-Finished [http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs](http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs)
+Finished! Testing ... [http://localhost/rest/v1/object/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs](http://localhost/rest/v1/object/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs)
 {% endhint %}
+
+
+
+### Installation outside oxid \(database only\)
+
+1. Switch to your vhost root directory and install project
+
+```text
+composer create-project oxid-community/oxid-rest-api rest
+```
+
+2. Update database credentials in `.env` file
+
+3. Migrate and seed database
+
+```text
+php artisan migrate
+php artisan db:seed
+```
+
+{% hint style="success" %}
+Finished! Testing ... [http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs](http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs)
+{% endhint %}
+
+
 

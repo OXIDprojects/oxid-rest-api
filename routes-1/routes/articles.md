@@ -3,7 +3,7 @@
 
 
 {% hint style="success" %}
-Add  `/rest/v1/`**`object`**`/articles` into your request to get oxid objects and using oxid functions like `save()`, `update()` and `delete()`.  For more infos see [Installation](../getting-started/installation.md#installation-within-oxid). 
+Add  `/rest/v1/`**`object`**`/articles` into your request to get oxid objects and using oxid functions like `save()`, `update()` and `delete()`.  For more infos see [Installation](../../getting-started/installation.md#installation-within-oxid). 
 {% endhint %}
 
 {% api-method method="get" host="https://YOUT\_SHOP\_URL" path="/rest/v1/articles" %}
@@ -98,7 +98,7 @@ No artcicles found
 {% endapi-method %}
 
 {% hint style="info" %}
-For more information about filters see [Filters](filters.md#filter-format).
+For more information about filters see [Filters](../filters.md#filter-format).
 {% endhint %}
 
 {% api-method method="get" host="https://YOUR\_SHOP\_URL" path="/rest/v1/articles/{id}" %}
@@ -489,7 +489,7 @@ Article with id {id} deleted successfully
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% page-ref page="filters.md" %}
+{% page-ref page="../filters.md" %}
 
 
 
