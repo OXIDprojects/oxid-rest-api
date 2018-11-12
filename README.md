@@ -5,7 +5,8 @@ description: 'REST API for OXID eSales ecommerce system, based on Lumen framewor
 # Overview
 
 {% hint style="info" %}
-**Documentation:** [https://docs.oxid-projects.com/oxid-rest-api/](https://docs.oxid-projects.com/oxid-rest-api/)
+**Documentation:** [https://docs.oxid-projects.com/oxid-rest-api/](https://docs.oxid-projects.com/oxid-rest-api/)  
+**Repository:** [https://github.com/OXIDprojects/oxid-rest-api](https://github.com/OXIDprojects/oxid-rest-api)
 {% endhint %}
 
 ## About
