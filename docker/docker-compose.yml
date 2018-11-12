@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  web:
+    build: container/web/.
+    depends_on:
+      - db
+    volumes:
+      - ${PWD}/data/www/:/var/www/html/:cached
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 80:80
+      
+  db:
+    image: mysql:5.7
+    volumes:
+      - ${PWD}/data/mysql/:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
