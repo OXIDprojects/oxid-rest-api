@@ -1,7 +1,7 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "oxid-community/oxid-rest-api",
+    "description": "REST API for OXID eShop based on Laravel Lumen Framework.",
+    "keywords": ["framework", "laravel", "lumen", "oxid", "rest", "api"],
     "license": "MIT",
     "type": "project",
     "require": {
