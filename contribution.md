@@ -4,7 +4,7 @@ description: Contribute to this project
 
 # Contribute
 
-## It´s open source
+## It´s open source!
 
 Feel free to contribute this oxid community project.
 
@@ -12,6 +12,9 @@ Feel free to contribute this oxid community project.
 
 ## Todos
 
+#### Routes
+
+* [x] Add articles route \(oxarticles/oxartextends\)
 * [ ] Add orders route \(oxorder/oxorderarticles\)
 * [ ] Add categories route \(oxcategories\)
 * [ ] Add users route \(oxuser/oxaddress\)
@@ -20,4 +23,6 @@ Feel free to contribute this oxid community project.
 {% hint style="info" %}
 Also have a look to the github issues: [https://github.com/OXIDprojects/oxid-rest-api/issues](https://github.com/OXIDprojects/oxid-rest-api/issues)
 {% endhint %}
+
+
 
