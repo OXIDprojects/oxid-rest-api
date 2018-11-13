@@ -1,2 +1,4 @@
 # Routes
 
+{% page-ref page="./" %}
+
