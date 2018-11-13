@@ -4,7 +4,7 @@
 * [Getting started](getting-started/README.md)
   * [Installation](getting-started/installation.md)
   * [Docker](getting-started/docker.md)
-* [API details](routes-1/README.md)
+* [Working with the API](routes-1/README.md)
   * [Authentication](routes-1/authentication.md)
   * [Routes](routes-1/routes/README.md)
     * [Articles](routes-1/routes/articles.md)

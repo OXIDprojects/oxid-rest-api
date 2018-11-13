@@ -55,7 +55,7 @@ Finished! Testing ... [http://localhost/rest/v1/object/articles?apiToken=t6PEqwk
 
 ### Installation outside oxid \(database only\)
 
-1. Switch to your vhost root directory and install project
+1. Switch to your vhost \([example](https://github.com/OXIDprojects/oxid-rest-api/blob/master/docker/container/web/files/000-default.conf)\) root directory and install project. 
 
 ```text
 composer create-project oxid-community/oxid-rest-api rest
