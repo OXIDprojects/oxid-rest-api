@@ -9,7 +9,7 @@ It´s possible to use this api only with the oxid database \(without the framewo
 1. Switch to your oxid `source` directory and install project
 
 ```text
-composer create-project oxid-community/oxid-rest-api rest
+composer create-project oxid-community/oxid-rest-api --keep-vcs rest
 ```
 
 2. Add rewrite rules to `.htaccess` file after line  
@@ -45,8 +45,6 @@ VALUES
 	(1,'Test User','t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs','rw',NULL,NULL);
 ```
 
-4. Update database credentials in `.env` file
-
 {% hint style="success" %}
 Finished! Testing ... [http://localhost/rest/v1/object/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs](http://localhost/rest/v1/object/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs)
 {% endhint %}
@@ -58,7 +56,7 @@ Finished! Testing ... [http://localhost/rest/v1/object/articles?apiToken=t6PEqwk
 1. Switch to your vhost \([example](https://github.com/OXIDprojects/oxid-rest-api/blob/master/docker/container/web/files/000-default.conf)\) root directory and install project. 
 
 ```text
-composer create-project oxid-community/oxid-rest-api rest
+composer create-project oxid-community/oxid-rest-api --keep-vcs rest
 ```
 
 2. Update database credentials in `.env` file
@@ -74,5 +72,7 @@ php artisan db:seed
 Finished! Testing ... [http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs](http://localhost/rest/v1/articles?apiToken=t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs)
 {% endhint %}
 
+## Update
 
+Go to your rest directory and execute `git pull`.
 
