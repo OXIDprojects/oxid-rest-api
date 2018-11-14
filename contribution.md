@@ -16,6 +16,7 @@ Feel free to contribute this oxid community project.
 * [ ] Add users route \(oxuser/oxaddress\)
 * [ ] Add groups route \(oxgroups\)
 * [ ] Add [https://github.com/DarkaOnLine/SwaggerLume](https://github.com/DarkaOnLine/SwaggerLume)
+* [x] Use oxid database connection when installed inside oxid framework
 
 {% hint style="info" %}
 Also have a look to the github issues: [https://github.com/OXIDprojects/oxid-rest-api/issues](https://github.com/OXIDprojects/oxid-rest-api/issues)
