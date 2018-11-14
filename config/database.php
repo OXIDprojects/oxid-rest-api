@@ -4,10 +4,10 @@ if (file_exists(__DIR__ . '/../../config.inc.php')) {
     /**
      * Helper for loading and getting the config file contents
      */
-    class BootstrapConfigFileReader
+    class RestConfigFileReader
     {
         /**
-         * BootstrapConfigFileReader constructor.
+         * RestConfigFileReader constructor.
          */
         public function __construct()
         {
@@ -15,7 +15,7 @@ if (file_exists(__DIR__ . '/../../config.inc.php')) {
         }
     }
     // yes, so load OXID config file
-    $configFile = new \BootstrapConfigFileReader();
+    $configFile = new \RestConfigFileReader();
     // and return specific config values
     return [
         'default' => env('DB_CONNECTION', 'mysql'),
