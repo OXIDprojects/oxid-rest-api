@@ -16,7 +16,7 @@ Using the API needs and authentication with an API token.
 
 ## Token administration
 
-Tokens are stored in the database table rest\_users.
+Tokens are stored in the database table `rest_users`.
 
 | Column | Value |
 | :--- | :--- |
@@ -35,7 +35,7 @@ It´s possible to set **read/write** \(default\) and only **read** permissions.
 | Status | Permission |
 | :--- | :--- |
 | rw | GET, PUT, POST, DELETE |
-| w | GET |
+| r | GET |
 
 {% hint style="danger" %}
 Before production remove test user from `rest_users` table.

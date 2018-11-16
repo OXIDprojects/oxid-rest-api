@@ -23,5 +23,3 @@ This project is wip \(work in progress\). The API is functionally working and th
 * Tobias Merkl \| [@tabsl](https://twitter.com/tabsl) \| [proudcommerce.com](https://www.proudcommerce.com)
 * Stefan Moises \| [@upsettweety](https://twitter.com/upsettweety) \| [rent-a-hero.de](http://www.rent-a-hero.de)
 
-
-
