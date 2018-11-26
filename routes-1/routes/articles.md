@@ -19,7 +19,7 @@ Get all articles.
 {% api-method-request %}
 {% api-method-query-parameters %}
 {% api-method-parameter name="limit" type="number" required=false %}
-number of results to return
+number of results to return \(standard: 100\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="order" type="string" required=false %}
