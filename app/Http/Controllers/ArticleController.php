@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Helpers\FilterHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ArticleController
@@ -23,18 +24,18 @@ class ArticleController extends Controller
      */
     public function showAllArticles()
     {
-        $limit = (Input::get('limit') ? Input::get('limit') : '10');
+        $limit = (Input::get('limit') ? Input::get('limit') : '100');
         $page = (Input::get('page') ? Input::get('page') : '1');
         $skip = ($page > 1 ? ($page - 1) * $limit : 0);
         $order_by = (Input::get('order_by') ? Input::get('order_by') : 'oxartnum');
         $order = (Input::get('order') ? Input::get('order') : 'asc');
 
         if (!empty($filters = FilterHelper::prepareFilters())) {
-            if (($articles = Article::where(array_values($filters))->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) && count($articles)) {
+            if (($articles = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->where(array_values($filters))->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) && count($articles)) {
                 return response()->json($articles);
             }
         } else {
-            if ($articles = Article::whereNotNull('oxid')->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) {
+            if ($articles = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->whereNotNull('oxarticles.oxid')->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) {
                 return response()->json($articles);
             }
         }
@@ -51,7 +52,7 @@ class ArticleController extends Controller
      */
     public function showOneArticle($id)
     {
-        if ($article = Article::find($id)) {
+        if ($article = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->find($id)) {
             return response()->json($article);
         }
 
