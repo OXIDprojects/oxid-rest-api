@@ -47,6 +47,7 @@ class ArticleControllerOxid extends BaseControllerOxid
         if (count($articleListOxid)) {
             $articleList = [];
             foreach ($articleListOxid->getArray() as $oxid => $oxObject) {
+                $oxObject->oxarticles__oxlongdesc = new \OxidEsales\Eshop\Core\Field($oxObject->getLongDesc());
                 $articleList[] = $this->_oxObject2Array($oxObject);
             }
 
