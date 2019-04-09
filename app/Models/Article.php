@@ -4,11 +4,10 @@ namespace App\Models;
 
 /**
  * Class Article
- *
+ * @OA\Schema()
  * @package App\Models
  */
-class Article extends Base
-{
+class Article extends Base {
 
     /**
      * Database table
