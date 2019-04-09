@@ -11,19 +11,41 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class ArticleController
+ * @OA\Info(title="ArticleController", version="0.1")
+ *
+ * @OA\Server(
+ *      url="http://localhost",
+ *      description="Development Server"
+ * )
+ *
+ * @OA\SecurityScheme(
+ *   securityScheme="api_key",
+ *   type="apiKey",
+ *   in="query",
+ *   name="apiToken"
+ * )
  *
  * @package App\Http\Controllers
  */
-class ArticleController extends Controller
-{
+class ArticleController extends Controller {
 
     /**
-     * Get all articles
+     *
+     * @OA\Get(
+     *      path="/rest/v1/articles",
+     *      description="Get all articles",
+     *      operationId="getAll",
+     *      security={
+     *          { "api_key": {"t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs"} }
+     *      },
+     *      @OA\Response(response="200", description="An example resource"),
+     *      @OA\Response(response="404", description="No articles found")
+     * )
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function showAllArticles()
-    {
+    public function showAllArticles() {
+
         $limit = (Input::get('limit') ? Input::get('limit') : '100');
         $page = (Input::get('page') ? Input::get('page') : '1');
         $skip = ($page > 1 ? ($page - 1) * $limit : 0);
@@ -34,24 +56,41 @@ class ArticleController extends Controller
             if (($articles = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->where(array_values($filters))->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) && count($articles)) {
                 return response()->json($articles);
             }
-        } else {
-            if ($articles = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->whereNotNull('oxarticles.oxid')->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) {
-                return response()->json($articles);
-            }
+        }
+
+        if ($articles = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->whereNotNull('oxarticles.oxid')->orderBy($order_by, $order)->skip($skip)->take($limit)->get()) {
+            return response()->json($articles);
         }
 
         return response('No articles found', 404);
     }
 
     /**
-     * Get only one article
+     *
+     * @OA\Get(
+     *      path="/rest/v1/articles/{id}",
+     *      description="Get only one article",
+     *      operationId="getOne",
+     *      security={
+     *          { "api_key": {"t6PEqwkBpbdsf93osDSF913Bmcsd78pYWLtEgvs"} }
+     *      },
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="String ID of the Article to get",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(response="200", description=""),
+     *      @OA\Response(response="404", description="Article with id not found"),
+     *
+     * )
      *
      * @param $id
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function showOneArticle($id)
-    {
+    public function showOneArticle($id) {
+
         if ($article = Article::leftJoin('oxartextends', 'oxarticles.oxid', '=', 'oxartextends.oxid')->find($id)) {
             return response()->json($article);
         }

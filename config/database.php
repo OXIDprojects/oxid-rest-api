@@ -19,6 +19,7 @@ if (file_exists(__DIR__ . '/../../config.inc.php')) {
     // and return specific config values
     return [
         'default' => env('DB_CONNECTION', 'mysql'),
+        'migrations' => 'migrations',
         'connections' => [
             'mysql' => [
                 'driver' => 'mysql',
@@ -41,6 +42,7 @@ if (file_exists(__DIR__ . '/../../config.inc.php')) {
 // no OXID, use default .env vars
 return [
     'default' => env('DB_CONNECTION', 'mysql'),
+    'migrations' => 'migrations',
     'connections' => [
         'mysql' => [
             'driver' => 'mysql',
